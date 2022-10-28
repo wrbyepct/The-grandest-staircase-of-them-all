@@ -68,7 +68,7 @@ total_variation(n, max_base_step): { n >= 3 /\ max_base_step >= 2 }
                                         i := i + 1 
                                    { i > max_base_step /\ total = (+ s | 2 <= s <= i : steps_variation(n, s)) }
 """
-
+ 
 
 def get_min_bricks_for_steps():
     min_brick_list = {}
