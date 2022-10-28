@@ -58,15 +58,14 @@ maxSteps(n): { n >= 3 }                                                         
                od         
              { n <= base_steps /\ max_steps = base_steps - 1 }                         # Post-condition( ~LC /\ LI )
 
-
 total_variation(n, max_base_step): { n >= 3 /\ max_base_step >= 2 }
                                      i := 2
-                                     total := 1
-                                   { 2 <= i <= max_base_step /\ total = (+ s | 2 <= s <= i : steps_variation(n, s)) }
+                                     total := 0
+                                   { 2 <= i <= max_base_step /\ total = (+ s | 2 <= s < i : steps_variation(n, s)) }
                                      do 2 <= i <= max_base_step 
                                      -> total := total + steps_variation(n, s), 
                                         i := i + 1 
-                                   { i > max_base_step /\ total = (+ s | 2 <= s <= i : steps_variation(n, s)) }
+                                   { i > max_base_step /\ total = (+ s | 2 <= s < i : steps_variation(n, s)) }
 """
  
 
