@@ -47,24 +47,24 @@ steps_variation(n, s):   { n >= 3 /\ s >= 2 /\ value:N /\ m = n - s}            
                            \/ value = steps_variation(m, s) + steps_variation(m, s - 1) }   # Post-condition
                            
                            
-maxSteps(n): { n >= 3 }                                                                # Precondition
-               base_steps := 2                                                         # Initialization
-               max_steps := 1
-             { n > base_steps /\ max_steps = base_steps - 1}                           # Loop condition & Loop invariant
-               do n > steps                                                            # DO statement
-               -> n := n - base_steps,
-                  max_steps := base_steps,
+maxSteps(n): { n >= 3 /\ max_steps = base_bricks - 1 }                                 # Precondition
+               base_bricks := 2                                                        # Initialization
+                 max_steps := 1
+             { n > base_bricks /\ max_steps = base_bricks - 1}                         # Loop condition & Loop invariant
+               do n > base_bricks                                                      # DO statement
+               ->  max_steps := base_bricks,
+                           n := n - base_bricks,
                   base_steps := base_steps + 1,     
                od         
-             { n <= base_steps /\ max_steps = base_steps - 1 }                         # Post-condition( ~LC /\ LI )
+             { n <= base_steps /\ max_steps = base_bricks - 1 }                        # Post-condition( ~LC /\ LI )
 
 total_variation(n, max_base_step): { n >= 3 /\ max_base_step >= 2 }
-                                     i := 2
+                                         i := 2
                                      total := 0
                                    { 2 <= i <= max_base_step /\ total = (+ s | 2 <= s < i : steps_variation(n, s)) }
                                      do 2 <= i <= max_base_step 
                                      -> total := total + steps_variation(n, s), 
-                                        i := i + 1 
+                                            i := i + 1 
                                    { i > max_base_step /\ total = (+ s | 2 <= s < i : steps_variation(n, s)) }
 """
  
