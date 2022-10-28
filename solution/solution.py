@@ -47,7 +47,7 @@ steps_variation(n, s):   { n >= 3 /\ s >= 2 /\ value:N /\ m = n - s}            
                            \/ value = steps_variation(m, s) + steps_variation(m, s - 1) }   # Post-condition
                            
                            
-maxSteps(n): { n >= 3 /\ max_steps = base_bricks - 1 }                                 # Precondition
+maxSteps(n): { n >= 3 }                                                                # Precondition
                base_bricks := 2                                                        # Initialization
                  max_steps := 1
              { n > base_bricks /\ max_steps = base_bricks - 1}                         # Loop condition & Loop invariant
