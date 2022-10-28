@@ -47,7 +47,7 @@ steps_variation(n, s):   { n >= 3 /\ s >= 2 /\ value:N /\ m = n - s}            
                            \/ value = steps_variation(m, s) + steps_variation(m, s - 1) }   # Post-condition
                            
                            
-maxSteps(n): { n >= 3 /\ max_steps = base_steps - 1(loop invariant) }                  # Precondition
+maxSteps(n): { n >= 3 }                                                                # Precondition
                base_steps := 2                                                         # Initialization
                max_steps := 1
              { n > base_steps /\ max_steps = base_steps - 1}                           # Loop condition & Loop invariant
@@ -56,7 +56,7 @@ maxSteps(n): { n >= 3 /\ max_steps = base_steps - 1(loop invariant) }           
                   max_steps := base_steps,
                   base_steps := base_steps + 1,     
                od         
-             { n <= base_steps /\ max_steps = base_steps - 1(loop invariant) }         # Post-condition( ~LC /\ LI )
+             { n <= base_steps /\ max_steps = base_steps - 1 }                         # Post-condition( ~LC /\ LI )
 
 
 total_variation(n, max_base_step): { n >= 3 /\ max_base_step >= 2 }
